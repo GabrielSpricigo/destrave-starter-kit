@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Starter Kit · Mentoria Destrave Claude Code · Gabriel Pedrozo</title>
+<link rel="stylesheet" href="file:///Users/gabrielspricigo/.claude/skills/gerar-doc-pdf/shared/base.css">
+<link rel="stylesheet" href="file:///Users/gabrielspricigo/.claude/skills/gerar-doc-pdf/brands/gabriel-pedrozo-warm.css">
+<link rel="stylesheet" href="file:///Users/gabrielspricigo/.claude/skills/gerar-doc-pdf/shared/components.css">
+<style>
+  /* Component custom: code-block (prompt pra colar no Claude Code) */
+  .code-block {
+    background: var(--color-text);
+    color: var(--surface-page);
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 14px 0 18px 0;
+    font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+    font-size: 11.5px;
+    line-height: 1.55;
+    letter-spacing: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .code-block .label {
+    display: block;
+    color: var(--color-accent);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    margin-bottom: 10px;
+  }
+  .code-block.shell {
+    background: var(--surface-alt);
+    color: var(--color-text);
+    border: 1px solid var(--border-default);
+  }
+  .code-block.shell .label { color: var(--color-warm-gray); }
+
+  /* Skill page layout */
+  .skill-eyebrow { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; }
+  .skill-eyebrow .num { font-family: var(--font-edit); font-style: italic; font-size: 14px; color: var(--color-warm-gray); }
+
+  /* Spec strip (tipo / prereq / quando NÃO usar) */
+  .spec-strip {
+    border: 1px solid var(--border-default);
+    border-radius: 5px;
+    background: var(--surface-alt);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    margin: 18px 0;
+  }
+  .spec-strip .cell {
+    padding: 12px 14px;
+    border-right: 1px solid var(--border-default);
+  }
+  .spec-strip .cell:last-child { border-right: none; }
+  .spec-strip .key {
+    font-size: 10px; font-weight: 600;
+    color: var(--color-warm-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 4px;
+  }
+  .spec-strip .value {
+    font-size: 12.5px;
+    color: var(--color-text);
+    line-height: 1.35;
+  }
+
+  /* Mini-list dentro de skill (passos do exemplo, etc.) */
+  .mini-list { margin: 8px 0 14px 0; padding-left: 18px; }
+  .mini-list li { font-size: 13px; line-height: 1.5; color: var(--color-text-soft); margin-bottom: 4px; }
+  .mini-list li strong { color: var(--color-text); }
+
+  /* Section title compacto pra cabeça de skill */
+  .skill-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+    margin-bottom: 8px;
+  }
+  .skill-title em {
+    font-family: var(--font-edit);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-accent);
+    letter-spacing: -0.03em;
+  }
+  .skill-sub {
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: var(--color-text-soft);
+    margin-bottom: 4px;
+  }
+
+  /* Inline note dentro de página */
+  .inline-note {
+    border-left: 2px solid var(--color-warm-gray);
+    padding: 4px 0 4px 12px;
+    margin: 12px 0;
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--color-text-soft);
+  }
+  .inline-note strong { color: var(--color-text); }
+
+  /* Checklist (última página) */
+  .checklist { list-style: none; counter-reset: ck; margin-top: 12px; }
+  .checklist li {
+    counter-increment: ck;
+    padding: 12px 16px 12px 48px;
+    border: 1px solid var(--border-default);
+    border-radius: 5px;
+    margin-bottom: 8px;
+    position: relative;
+    background: var(--surface-page);
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--color-text-soft);
+  }
+  .checklist li::before {
+    content: counter(ck, decimal-leading-zero);
+    position: absolute;
+    left: 16px;
+    top: 12px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--color-accent);
+    letter-spacing: -0.02em;
+  }
+  .checklist li strong { color: var(--color-text); }
+  .checklist li code {
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 11.5px;
+    background: var(--surface-ghost);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--color-text);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═════════════════════════════ PAGE 1 — Capa ═════════════════════════════ -->
+<section class="page">
+  <header class="page-header">
+    <div class="brand"><span class="dot"></span>Gabriel Pedrozo</div>
+    <div class="meta-label">Starter Kit · Mentoria · 2026-05</div>
+  </header>
+
+  <div class="eyebrow">Onboarding · Destrave Claude Code</div>
+  <div class="hero">
+    <h1>O kit que faz o Claude Code virar <em>coluna vertebral</em></h1>
+    <p class="lede">Seis ferramentas que eu uso todo dia, com o prompt pronto pra você colar no seu Claude Code e deixar ele se instalar sozinho. Abra a página da skill, copia o bloco escuro inteiro, cola na sessão. Sem decoreba, sem tutorial em vídeo — o ambiente vira o meu.</p>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow muted">O que entra · 06 ferramentas</div>
+    <table class="verdict-table">
+      <thead>
+        <tr><th>Skill</th><th>Categoria</th><th>Pra quê</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>RTK</td><td>Dev essencial</td><td>Economia de 60-90% de token em operações repetidas (git, ls, etc.)</td></tr>
+        <tr><td>OpenWispr</td><td>Dev essencial</td><td>Dictation local — falar com o Claude em vez de digitar</td></tr>
+        <tr><td>agent-browser</td><td>Dev essencial</td><td>CLI de navegação web pro agente abrir páginas e ler conteúdo</td></tr>
+        <tr><td>Wiki (padrão)</td><td>Captura/memória</td><td>Segundo cérebro persistente em markdown, navegável no Obsidian</td></tr>
+        <tr><td>MemPalace</td><td>Captura/memória</td><td>Memória semântica entre conversas — KG + busca vetorial</td></tr>
+        <tr><td>/done</td><td>Ritual de fim</td><td>Fechar etapa, calibrar skills (auto-improvement) e fazer bridge com ClickUp</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer class="page-footer">
+    <div>Starter Kit · Destrave Claude Code</div>
+    <div class="signature">por <em>Gabriel Pedrozo</em></div>
+    <div>01 / 08</div>
+  </footer>
+</section>
+
+<!-- ═════════════════════════════ PAGE 2 — RTK ═════════════════════════════ -->
+<section class="page">
+  <header class="page-header">
+    <div class="brand"><span class="dot"></span>Gabriel Pedrozo</div>
+    <div class="meta-label">Starter Kit · Skill 01</div>
+  </header>
+
+  <div class="skill-eyebrow">
+    <div class="eyebrow">Dev Essencial · 01</div>
+    <div class="num">Rust Token Killer</div>
+  </div>
+
+  <h2 class="skill-title">RTK — economia <em>silenciosa</em> de token</h2>
+  <p class="skill-sub">Proxy CLI escrito em Rust que intercepta comandos do Claude Code via hook e filtra output verboso antes de chegar no modelo. Você não muda nada na forma de trabalhar — só gasta 60-90% menos token em operações repetidas (git status, ls, find, etc.).</p>
+
+  <div class="spec-strip">
+    <div class="cell"><div class="key">Tipo</div><div class="value">CLI binário + hook Claude Code</div></div>
+    <div class="cell"><div class="key">Pré-requisitos</div><div class="value">Cargo (Rust) ou Homebrew</div></div>
+    <div class="cell"><div class="key">Quando NÃO usar</div><div class="value">Debug profundo de comando — use <code>rtk proxy &lt;cmd&gt;</code></div></div>
+  </div>
+
+  <div class="code-block">
+<span class="label">Prompt pra colar no Claude Code</span>Instale o RTK (Rust Token Killer) — proxy CLI que economiza token em comandos repetidos.
+
+Passos:
+1. Instale via cargo: `cargo install rtk-cli` (ou veja README do repo para opção brew se cargo não estiver disponível).
+2. Verifique a instalação: rode `rtk --version` (deve mostrar versão) e `rtk gain` (deve abrir).
+3. ⚠️ ATENÇÃO: existe outro pacote chamado `rtk` (reachingforthejack/rtk) — se `rtk gain` falhar com "command not found", o binário errado está no PATH. Desinstale o conflitante.
+4. Configure o hook do Claude Code para reescrever automaticamente comandos comuns (git, ls, etc.) via `rtk`. O setup do hook está documentado no README do repo rtk-cli.
+5. Adicione ao meu CLAUDE.md global (~/.claude/CLAUDE.md) uma seção com os comandos meta: `rtk gain`, `rtk gain --history`, `rtk discover`, `rtk proxy`.
+6. Confirme com `rtk gain` mostrando 0 economia (ainda não usei nada).
+
+Se algum passo falhar, pause e me mostre o erro antes de continuar.</div>
+
+  <div class="inline-note"><strong>Verificação visual:</strong> depois de uns dias usando, rode <code>rtk gain</code> e veja a economia acumulada. Em sessões longas, é comum bater 70%+ em comandos de dev.</div>
+
+  <footer class="page-footer">
+    <div>Starter Kit · RTK</div>
+    <div class="signature">por <em>Gabriel Pedrozo</em></div>
+    <div>02 / 08</div>
+  </footer>
+</section>
+
+<!-- ═════════════════════════════ PAGE 3 — OpenWispr ═════════════════════════════ -->
+<section class="page">
+  <header class="page-header">
+    <div class="brand"><span class="dot"></span>Gabriel Pedrozo</div>
+    <div class="meta-label">Starter Kit · Skill 02</div>
+  </header>
+
+  <div class="skill-eyebrow">
+    <div class="eyebrow">Dev Essencial · 02</div>
+    <div class="num">Dictation local</div>
+  </div>
+
+  <h2 class="skill-title">OpenWispr — você fala, o <em>Claude</em> entende</h2>
+  <p class="skill-sub">Dictation local rodando Whisper na sua máquina (sem nuvem, sem latência). Você segura <strong>fn</strong>, fala normalmente, solta — o texto aparece onde o cursor estiver. Plug direto no chat do Claude Code, em qualquer editor, em qualquer app. Resolve o gargalo de "tenho a ideia, mas digitar 3 parágrafos cansa".</p>
+
+  <div class="spec-strip">
+    <div class="cell"><div class="key">Tipo</div><div class="value">Daemon CLI (macOS)</div></div>
+    <div class="cell"><div class="key">Pré-requisitos</div><div class="value">Homebrew · ~3GB livres pro modelo</div></div>
+    <div class="cell"><div class="key">Quando NÃO usar</div><div class="value">Audio com música/barulho — qualidade cai</div></div>
+  </div>
+
+  <div class="code-block">
+<span class="label">Prompt pra colar no Claude Code</span>Instale o OpenWispr — dictation local com Whisper.
+
+Passos:
+1. Instale via Homebrew: `brew install open-wispr` (verifique o nome exato do tap; pode ser `brew tap open-wispr/open-wispr` primeiro).
+2. Inicie o serviço: `brew services start open-wispr`.
+3. Verifique status: `brew services list | grep open-wispr` (deve mostrar started).
+4. Baixe o modelo `large-v3-turbo` (rápido + bom em PT-BR). Caminho default: `~/.config/open-wispr/models/`. Se o download via app não funcionar, baixe manualmente o `ggml-large-v3-turbo.bin` da Hugging Face (ggerganov/whisper.cpp).
+5. ⚠️ NÃO use o modelo `large` direto — URL canônico dele dá 404. Use `large-v3-turbo`.
+6. Teste: abra qualquer campo de texto, segure `fn`, fale uma frase curta, solte. Texto deve aparecer.
+7. Se o ícone na menu bar sumir atrás do notch, é normal — o daemon continua rodando.
+
+Se a hotkey `fn` não funcionar, peça permissão de Acessibilidade em System Settings.</div>
+
+  <div class="inline-note"><strong>Por que importa:</strong> a maior parte do meu input pro Claude vem por voz. Sessão de 2h tem facilmente 30+ ditados longos. Sem isso, a fricção mata o uso.</div>
+
+  <footer class="page-footer">
+    <div>Starter Kit · OpenWispr</div>
+    <div class="signature">por <em>Gabriel Pedrozo</em></div>
+    <div>03 / 08</div>
+  </footer>
+</section>
+
+<!-- ═════════════════════════════ PAGE 4 — agent-browser ═════════════════════════════ -->
+<section class="page">
+  <header class="page-header">
+    <div class="brand"><span class="dot"></span>Gabriel Pedrozo</div>
+    <div class="meta-label">Starter Kit · Skill 03</div>
+  </header>
+
+  <div class="skill-eyebrow">
+    <div class="eyebrow">Dev Essencial · 03</div>
+    <div class="num">Navegação Web</div>
+  </div>
+
+  <h2 class="skill-title">agent-browser — o Claude com <em>navegador</em> próprio</h2>
+  <p class="skill-sub">CLI da Vercel Labs que dá ao Claude um browser headless com API simples. Diferente de WebFetch (que só puxa HTML), o agent-browser navega de verdade: clica, preenche form, lê screenshot. Refs <code>@eN</code> tornam a árvore amigável pro modelo. É a primeira escolha pra qualquer scraping ou navegação assistida.</p>
+
+  <div class="spec-strip">
+    <div class="cell"><div class="key">Tipo</div><div class="value">CLI global Node.js</div></div>
+    <div class="cell"><div class="key">Pré-requisitos</div><div class="value">Node 20+ · npm/pnpm</div></div>
+    <div class="cell"><div class="key">Quando NÃO usar</div><div class="value">API pública disponível — usa direto</div></div>
+  </div>
+
+  <div class="code-block">
+<span class="label">Prompt pra colar no Claude Code</span>Instale o agent-browser (Vercel Labs) — CLI de navegação web pro agente.
+
+Passos:
+1. Instale global: `npm install -g @vercel/agent-browser` (confirme o nome exato do pacote no README do repo vercel-labs/agent-browser).
+2. Verifique: `agent-browser --version`.
+3. Faça um teste rápido: `agent-browser snapshot https://example.com` — deve devolver árvore com refs `@eN`.
+4. Adicione ao meu CLAUDE.md uma regra: para navegar web, hierarquia de preferência é (1) API oficial, (2) agent-browser, (3) playwright, (4) puppeteer. Não usar WebFetch quando precisar interagir com a página.
+5. Confirme conhecendo os 3 verbos principais: `snapshot` (ler árvore), `click @eN` (clicar elemento), `fill @eN "texto"` (preencher).
+
+Se Chrome/Chromium não estiver disponível, o agent-browser baixa o próprio na primeira run.</div>
+
+  <div class="inline-note"><strong>Caso real:</strong> "abre o dashboard X, copia o número de leads dessa semana e cola no relatório." Sem agent-browser, isso é manual ou exige scraping custom. Com ele, é uma instrução conversacional.</div>
+
+  <footer class="page-footer">
+    <div>Starter Kit · agent-browser</div>
+    <div class="signature">por <em>Gabriel Pedrozo</em></div>
+    <div>04 / 08</div>
+  </footer>
+</section>
+
+<!-- ═════════════════════════════ PAGE 5 — Wiki ═════════════════════════════ -->
+<section class="page">
+  <header class="page-header">
+    <div class="brand"><span class="dot"></span>Gabriel Pedrozo</div>
+    <div class="meta-label">Starter Kit · Skill 04</div>
+  </header>
+
+  <div class="skill-eyebrow">
+    <div class="eyebrow">Captura · 04</div>
+    <div class="num">Padrão, não pacote</div>
+  </div>
+
+  <h2 class="skill-title">Wiki — seu segundo <em>cérebro</em> versionado</h2>
+  <p class="skill-sub">Não é uma skill instalável: é um padrão. Uma pasta <code>wiki/</code> no seu repo, mantida pelo próprio Claude, que vira fonte de verdade pra clientes, padrões e decisões. Navegável no Obsidian (grafo, backlinks, callouts) e indexável pelo modelo. O que importa é a estrutura — não a ferramenta.</p>
+
+  <div class="spec-strip">
+    <div class="cell"><div class="key">Tipo</div><div class="value">Convenção de pastas + slash commands</div></div>
+    <div class="cell"><div class="key">Pré-requisitos</div><div class="value">Git repo · Obsidian (opcional)</div></div>
+    <div class="cell"><div class="key">Quando NÃO usar</div><div class="value">Fragmentos soltos — vão pro MemPalace</div></div>
+  </div>
+
+  <div class="code-block">
+<span class="label">Prompt pra colar no Claude Code</span>Inicializa a estrutura de wiki no meu repo seguindo o padrão do Gabriel Pedrozo (PRODIA).
+
+Passos:
+1. Crie a pasta `wiki/` na raiz do projeto.
+2. Dentro dela, crie subpastas: `clientes/`, `padroes/`, `decisoes/`, `projetos/`, `playbooks/`, `_fontes/`, `_arquivados/`, `00_inbox/`.
+3. Crie `wiki/_schema.md` documentando o propósito de cada pasta (clientes = card.md superficial + deep.md tático; padrões = como fazemos as coisas; decisões = ADRs datados; etc.).
+4. Crie `wiki/index.md` como página raiz com wikilinks `[[]]` pra cada subpasta.
+5. Adicione ao meu CLAUDE.md as regras: (a) antes de tarefa com cliente, ler `wiki/clientes/<slug>/card.md`; (b) após call ou doc novo, perguntar se quer ingerir na wiki; (c) clientes legacy podem usar `wiki/clientes/<slug>.md` único.
+6. Sugira instalar Obsidian e abrir o vault apontando pra `wiki/` (opcional mas recomendado).
+
+NÃO crie páginas de cliente automaticamente — espere eu pedir.</div>
+
+  <div class="inline-note"><strong>Cuidado:</strong> wiki só funciona se você ingerir conhecimento de verdade. Página vazia não ajuda. A regra que eu sigo: depois de toda call ou doc novo, pergunto "isso vira wiki?". Maioria não — mas as que viram, valem ouro 6 meses depois.</div>
+
+  <footer class="page-footer">
+    <div>Starter Kit · Wiki</div>
+    <div class="signature">por <em>Gabriel Pedrozo</em></div>
+    <div>05 / 08</div>
+  </footer>
+</section>
+
+<!-- ═════════════════════════════ PAGE 6 — MemPalace ═════════════════════════════ -->
+<section class="page">
+  <header class="page-header">
+    <div class="brand"><span class="dot"></span>Gabriel Pedrozo</div>
+    <div class="meta-label">Starter Kit · Skill 05</div>
+  </header>
+
+  <div class="skill-eyebrow">
+    <div class="eyebrow">Captura · 05</div>
+    <div class="num">MCP server</div>
+  </div>
+
+  <h2 class="skill-title">MemPalace — memória <em>semântica</em> entre conversas</h2>
+  <p class="skill-sub">MCP server que combina Knowledge Graph (triples sobre entidades nomeadas — cliente, projeto, pessoa) e busca vetorial. O Claude recupera percepções que você teve em sessões anteriores, mesmo que nem lembre de ter falado. É a primeira camada do pipeline <strong>percepção → ação → consolidação</strong>: fragmentos vivem aqui, e só os durables sobem pra wiki.</p>
+
+  <div class="spec-strip">
+    <div class="cell"><div class="key">Tipo</div><div class="value">MCP server (local)</div></div>
+    <div class="cell"><div class="key">Pré-requisitos</div><div class="value">Python 3.11+ · ChromaDB</div></div>
+    <div class="cell"><div class="key">Quando NÃO usar</div><div class="value">Decisão já consolidada — vai pra wiki/decisoes/</div></div>
+  </div>
+
+  <div class="code-block">
+<span class="label">Prompt pra colar no Claude Code</span>Instale o MemPalace MCP server (gabrielspricigo/mempalace ou repo equivalente).
+
+Passos:
+1. Clone o repo do MemPalace para `~/code/mempalace` (peça URL do repo se não souber).
+2. Crie venv: `python3 -m venv ~/code/mempalace/.venv` e ative.
+3. Instale dependências: `pip install -r requirements.txt` (deve incluir chromadb, sentence-transformers).
+4. Configure o MCP em `~/.claude/.mcp.json` (ou similar do meu Claude Code) — adicione mempalace como servidor MCP apontando pro `~/code/mempalace/.venv/bin/python` (caminho absoluto, NÃO `python3` bare).
+5. Teste: reinicie Claude Code e veja se `mempalace_status` aparece nas tools disponíveis.
+6. Adicione ao meu CLAUDE.md a regra: default = `mempalace_kg_add` (triple), não drawer. Drawer só pra blob livre. Sempre criar room específica (NUNCA `general`).
+7. ⚠️ NÃO rode `mempalace mine .` na raiz do repo — gera milhares de chunks lixo e quebra a busca. Se quiser mining, alvo específico (ex: só `wiki/`).
+
+Se ChromaDB pedir versão específica, prefira a stable mais recente.</div>
+
+  <div class="inline-note"><strong>Padrão que eu sigo:</strong> ao mencionar entidade nomeada (cliente, projeto, pessoa), rodar <code>mempalace_kg_query</code> em paralelo com a busca semântica. Side quests aparecem com predicate <code>side_quest_*</code> — historia recuperável meses depois.</div>
+
+  <footer class="page-footer">
+    <div>Starter Kit · MemPalace</div>
+    <div class="signature">por <em>Gabriel Pedrozo</em></div>
+    <div>06 / 08</div>
+  </footer>
+</section>
+
+<!-- ═════════════════════════════ PAGE 7 — /done ═════════════════════════════ -->
+<section class="page">
+  <header class="page-header">
+    <div class="brand"><span class="dot"></span>Gabriel Pedrozo</div>
+    <div class="meta-label">Starter Kit · Skill 06</div>
+  </header>
+
+  <div class="skill-eyebrow">
+    <div class="eyebrow">Ritual de fim · 06</div>
+    <div class="num">Auto-improvement</div>
+  </div>
+
+  <h2 class="skill-title">/done — fechar etapa, <em>calibrar</em> skill, comemorar</h2>
+  <p class="skill-sub">O ritual de fim de toda etapa. Faz três coisas numa passada: registra o que foi entregue, varre as skills usadas na sessão perguntando se alguma precisa ajuste (auto-improvement Nível 4, a skill aprende com você) e — se você usa ClickUp — fecha a task. Quem roda <code>/done</code> regular tem skills que evoluem sozinhas.</p>
+
+  <div class="spec-strip">
+    <div class="cell"><div class="key">Tipo</div><div class="value">Slash command</div></div>
+    <div class="cell"><div class="key">Pré-requisitos</div><div class="value">Nenhum (ClickUp opcional)</div></div>
+    <div class="cell"><div class="key">Quando NÃO usar</div><div class="value">No meio da execução — só no fim</div></div>
+  </div>
+
+  <div class="code-block">
+<span class="label">Prompt pra colar no Claude Code</span>Instale a skill `/done` em `~/.claude/skills/done/SKILL.md`. Estrutura:
+
+1. FRONTMATTER: name=done, description="Ritual de fim de etapa: comemoração + calibração de skills (Nível 4 auto-improvement) + bridge ClickUp opcional."
+
+2. TRÊS ESCOPOS (detecte pelo contexto da sessão):
+   - fim de etapa  → comemoração curta + calibração
+   - fim de task   → comemoração + calibração + bridge ClickUp (se configurado)
+   - fim de projeto → retrospectiva curta + calibração + bridge
+
+3. CALIBRAÇÃO NÍVEL 4 (parte mais importante — é o coração da skill):
+   - Liste todas as skills invocadas nesta sessão (extraia do contexto).
+   - Pra cada uma, pergunte: "Algo a calibrar em <skill>?"
+   - Se sim, pegue a regra curta (≤200 chars) e adicione no SKILL.md daquela skill numa seção "Regras vivas" (bullet com data de hoje, cap 10 — mais antigo sai pra arquivo).
+
+4. BRIDGE CLICKUP (pergunte ao usuário ANTES de configurar):
+   - "Você usa ClickUp?" — se NÃO, pule essa parte, /done roda standalone.
+   - Se SIM: peça o API token (salva em ~/.config/.env como CLICKUP_API_TOKEN) e os IDs das listas principais. Ao concluir uma task, /done pergunta "fecha no ClickUp?" e executa via API.
+
+5. TESTE: rode `/done` agora — deve listar esta instalação como sessão e perguntar o que calibrar.</div>
+
+  <div class="inline-note"><strong>Por que é o último:</strong> as outras 5 skills te dão capacidade. <code>/done</code> faz elas <em>evoluírem</em> — cada calibração vira regra viva, sua versão pessoal da skill.</div>
+
+  <footer class="page-footer">
+    <div>Starter Kit · /done</div>
+    <div class="signature">por <em>Gabriel Pedrozo</em></div>
+    <div>07 / 08</div>
+  </footer>
+</section>
+
+<!-- ═════════════════════════════ PAGE 8 — Checklist + Próximos passos ═════════════════════════════ -->
+<section class="page">
+  <header class="page-header">
+    <div class="brand"><span class="dot"></span>Gabriel Pedrozo</div>
+    <div class="meta-label">Starter Kit · Fechamento</div>
+  </header>
+
+  <div class="eyebrow">Próximo passo · Mentoria</div>
+  <h2 class="skill-title">Depois de instalar, <em>abra uma sessão</em> comigo</h2>
+  <p class="skill-sub" style="margin-bottom: 20px;">Antes da nossa próxima call, valide o setup com o checklist abaixo. Se algum item travar, manda print na thread da mentoria — a gente desbloqueia ali mesmo.</p>
+
+  <div class="section" style="margin-bottom: 20px;">
+    <div class="eyebrow muted">Checklist de validação</div>
+    <ol class="checklist">
+      <li><strong>RTK</strong> respondendo: <code>rtk --version</code> mostra versão e <code>rtk gain</code> abre sem erro.</li>
+      <li><strong>OpenWispr</strong> ditando: segurar <code>fn</code>, falar uma frase, texto aparece no editor ativo.</li>
+      <li><strong>agent-browser</strong> navegando: <code>agent-browser snapshot https://example.com</code> retorna árvore com refs <code>@eN</code>.</li>
+      <li><strong>Wiki</strong> esqueleto: pasta <code>wiki/</code> existe no repo com subpastas mínimas e <code>_schema.md</code> preenchido.</li>
+      <li><strong>MemPalace</strong> ativo: <code>mempalace_status</code> aparece nas tools do Claude Code após restart.</li>
+      <li><strong>/done</strong> instalado: <code>/done</code> abre o ritual e lista as skills usadas na sessão pra calibrar.</li>
+    </ol>
+  </div>
+
+  <div class="pull-quote">
+    Esse kit não te transforma em <em>mim</em>. Te dá o mesmo solo de onde eu construo. O que cresce nele é seu.
+    <span class="attr">— G. P.</span>
+  </div>
+
+  <footer class="page-footer">
+    <div>Starter Kit · Fechamento</div>
+    <div class="signature">por <em>Gabriel Pedrozo</em></div>
+    <div>08 / 08</div>
+  </footer>
+</section>
+
+</body>
+</html>

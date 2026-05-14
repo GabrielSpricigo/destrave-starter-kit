@@ -9,6 +9,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/lib/detect-os.sh"
 
 # -- Skills disponíveis ------------------------------------------------------
+# Skills no master "tudo" (a). MemPalace é opt-in (opção 6 explícita, fora do "a").
 declare -a SKILL_KEYS=(terminal rtk dictation agent-browser wiki-template done)
 declare -A SKILL_LABELS=(
     [terminal]="Fase 0 · Terminal (ZSH + Oh My Zsh)"
@@ -17,6 +18,7 @@ declare -A SKILL_LABELS=(
     [agent-browser]="agent-browser"
     [wiki-template]="Wiki template"
     [done]="/done (ritual de fim)"
+    [mempalace]="MemPalace (avançado, opt-in)"
 )
 declare -A SKILL_SCRIPTS=(
     [terminal]="$SCRIPT_DIR/terminal/install-mac-linux.sh"
@@ -25,6 +27,7 @@ declare -A SKILL_SCRIPTS=(
     [agent-browser]="$SCRIPT_DIR/skills/agent-browser/install-mac-linux.sh"
     [wiki-template]="$SCRIPT_DIR/skills/wiki-template/install-mac-linux.sh"
     [done]="$SCRIPT_DIR/skills/done/install-mac-linux.sh"
+    [mempalace]="$SCRIPT_DIR/skills/mempalace/install-mac-linux.sh"
 )
 
 declare -A SKILL_STATUS
@@ -81,6 +84,9 @@ echo "  [3] ${SKILL_LABELS[agent-browser]}"
 echo "  [4] ${SKILL_LABELS[wiki-template]}"
 echo "  [5] ${SKILL_LABELS[done]}"
 echo ""
+echo "  Avançada (opt-in, FORA do 'a'):"
+echo "  [6] ${SKILL_LABELS[mempalace]}"
+echo ""
 echo "  (a) Tudo — Fase 0 + skills 1-5    (b) Escolher um a um    (c) Sair"
 echo ""
 printf "> "
@@ -114,6 +120,7 @@ case "$choice" in
     3)    run_skill "agent-browser" ;;
     4)    run_skill "wiki-template" ;;
     5)    run_skill "done" ;;
+    6)    run_skill "mempalace" ;;
     *)    destrave_err "Opção inválida: $choice"; exit 1 ;;
 esac
 
