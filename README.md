@@ -12,8 +12,8 @@ core do Claude Code, no Mac, Linux ou Windows.
 ## O que você ganha
 
 **Fase 0 — Terminal**
-- Mac/Linux: ZSH + Oh My Zsh + plugins (autosuggestions, syntax-highlighting)
-- Windows: Windows Terminal + Oh My Posh + PSReadLine + Nerd Font
+- Mac/Linux/WSL: ZSH + Oh My Zsh + plugins (autosuggestions, syntax-highlighting)
+- Windows: usa o mesmo ZSH+OMZ via WSL2 + Ubuntu (instalado pelo `install.ps1`)
 
 **Skills core (5)**
 1. **RTK** — token optimization (60–90% economia em comandos de dev)
@@ -32,10 +32,15 @@ core do Claude Code, no Mac, Linux ou Windows.
 | OS       | O que precisa estar instalado antes |
 |----------|--------------------------------------|
 | **Mac**     | [Homebrew](https://brew.sh), `git`, Claude Code |
-| **Linux**   | `git`, `curl`, `cargo` (ou `rustup`), Claude Code |
-| **Windows** | [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/) (Windows 10 1809+ ou 11), `git`, Claude Code |
+| **Linux**   | `git`, `curl`, Claude Code |
+| **Windows** | Windows 10 versão 2004+ ou Windows 11 (qualquer build moderno), `git` no Windows |
 
 > Não tem Claude Code ainda? Veja [claude.com/code](https://claude.com/code).
+
+> **Windows usa WSL2 + Ubuntu.** O ZSH e o Oh My Zsh que aparecem na aula são shells Unix —
+> não rodam em PowerShell puro. O kit instala o WSL pra você (um comando, um reboot) e
+> roda exatamente o mesmo `install.sh` que o Mac usa, dentro do Ubuntu. Resultado: o que
+> você vê na aula é o que aparece na sua tela.
 
 ---
 
@@ -57,13 +62,25 @@ cd ~/destrave-starter-kit
 bash install.sh
 ```
 
-### Windows (PowerShell)
+### Windows (PowerShell como Administrador)
+
+**Passo 1** — instalar WSL2 + Ubuntu (uma vez só, pede reboot):
 
 ```powershell
 git clone https://github.com/GabrielSpricigo/destrave-starter-kit.git $HOME\destrave-starter-kit
 cd $HOME\destrave-starter-kit
 .\install.ps1
 ```
+
+**Passo 2** — depois do reboot, abra **Ubuntu** no menu Iniciar e rode:
+
+```bash
+git clone https://github.com/GabrielSpricigo/destrave-starter-kit.git ~/destrave-starter-kit
+cd ~/destrave-starter-kit
+bash install.sh
+```
+
+A partir daí, o caminho Windows é idêntico ao Linux. Toda a aula faz sentido sem adaptação.
 
 O master abre um menu. Escolha `(a) Tudo` na primeira vez.
 
