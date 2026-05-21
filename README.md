@@ -1,11 +1,15 @@
 # Destrave Starter Kit
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux%20%7C%20Windows%20(WSL2)-blue)
+![Made by Gabriel Pedrozo](https://img.shields.io/badge/by-Gabriel%20Pedrozo-orange)
+
 Repositório plug-and-play para mentorados do **Destrave Claude Code** subirem
 o ambiente em 10–15 minutos. Um comando instala terminal produtivo + skills
 core do Claude Code, no Mac, Linux ou Windows.
 
 > Versão 2 — substitui o PDF de prompts da v1 por instaladores automatizados.
-> O PDF original continua em `docs/starter-kit-v1-prompts.html` para histórico.
+> O PDF original continua em `docs/starter-kit-v1-prompts.pdf` para histórico.
 
 ---
 
@@ -88,8 +92,7 @@ O master abre um menu. Escolha `(a) Tudo` na primeira vez.
 
 ## O que cada skill faz
 
-Documento ilustrado: [`docs/por-que-cada-skill-existe.html`](docs/por-que-cada-skill-existe.html)
-(também disponível em PDF).
+Documento ilustrado: [`docs/por-que-cada-skill-existe.pdf`](docs/por-que-cada-skill-existe.pdf)
 
 ---
 
@@ -130,12 +133,35 @@ destrave-starter-kit/
 │   ├── wiki-template/
 │   ├── done/
 │   └── mempalace/
-└── docs/                         HTML/PDFs explicativos
+└── docs/                         PDFs explicativos
 ```
 
 ---
 
 ## Autor
 
-[Gabriel Pedrozo](https://gabrielpedrozo.com) — Drop Studios.
-Mentorados Destrave: bug report direto via WhatsApp.
+Construído por **[Gabriel Pedrozo](https://gabrielpedrozo.com)** — Drop Studios.
+
+Mentor de empresários e profissionais que querem usar Claude Code (e agentes
+de IA em geral) como vantagem competitiva real, não como brinquedo.
+
+- 🌐 Site: [gabrielpedrozo.com](https://gabrielpedrozo.com)
+- 📸 Instagram: [@ogabrielpedrozo](https://instagram.com/ogabrielpedrozo)
+- 💼 LinkedIn: [in/ogabrielspricigo](https://linkedin.com/in/ogabrielspricigo)
+
+> Mentorados Destrave: bug report direto via WhatsApp.
+> Demais: [abra issue no repo](https://github.com/GabrielSpricigo/destrave-starter-kit/issues).
+
+## Créditos
+
+Este kit empacota e adapta projetos open-source incríveis:
+
+- **[LLM-Wiki-Skilled](https://github.com/TrueHOOHA/LLM-Wiki-Skilled)** (TrueHOOHA) — base do template de wiki Karpathy-style.
+- **[RTK · Rust Token Killer](https://github.com/rtk-ai/rtk)** — proxy CLI que economiza tokens.
+- **[Whispering](https://github.com/braden-w/whispering)** (Braden Wong) — dictation cross-platform.
+- **[agent-browser](https://www.npmjs.com/package/@vercel-labs/agent-browser)** (Vercel Labs) — CLI de navegação web.
+- **[Oh My Zsh](https://ohmyz.sh)** — framework do shell ZSH.
+
+## Licença
+
+[MIT](LICENSE) — uso livre, comercial inclusive. Atribuição apreciada mas não exigida.
