@@ -19,7 +19,7 @@ core do Claude Code, no Mac, Linux ou Windows.
 1. **RTK** — token optimization (60–90% economia em comandos de dev)
 2. **Dictation** — ditar com a voz dentro do Claude Code (alternativa cross-platform ao OpenWispr)
 3. **agent-browser** — CLI padrão de navegação web para agentes
-4. **Wiki template** — segundo cérebro mínimo (clientes, padrões, decisões, projetos)
+4. **Wiki template** — segundo cérebro mínimo (clientes, padrões, decisões, projetos). Skill derivada do [LLM-Wiki-Skilled](https://github.com/TrueHOOHA/LLM-Wiki-Skilled) (TrueHOOHA).
 5. **/done** — ritual de fim de sessão com calibração de skills
 
 **Opt-in (avançado)**
