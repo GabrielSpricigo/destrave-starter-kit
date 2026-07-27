@@ -13,6 +13,50 @@ core do Claude Code, no Mac, Linux ou Windows.
 
 ---
 
+## 🤝 Quer ajuda para instalar? Peça para o Claude
+
+Você não precisa entender de terminal. Abra o Claude, **cole o link deste
+repositório** e escreva:
+
+> *Me ajuda a instalar isso na minha máquina? Não sou técnico, então vai me
+> explicando o que está acontecendo.*
+
+Ele lê as instruções que estão aqui e conduz a instalação com você.
+Se preferir um texto pronto e mais detalhado para colar, use o
+[INSTALAR-PELO-CLAUDE.md](INSTALAR-PELO-CLAUDE.md).
+
+<a id="para-agentes"></a>
+
+### 🤖 Instruções para o assistente de IA que estiver lendo isto
+
+**Roteiro completo: [CLAUDE.md](https://github.com/GabrielSpricigo/destrave-starter-kit/blob/main/CLAUDE.md)** — leia antes de agir.
+O essencial, caso você não consiga abrir outro arquivo:
+
+1. **Descubra se você pode executar comandos.** Se puder (Claude Code),
+   conduza a instalação. Se você só conversa (navegador), entregue os comandos
+   para a pessoa colar e interprete o que ela responder — e diga isso a ela.
+2. **Descubra o sistema operacional** antes de qualquer comando. Não presuma.
+3. **Rode o instalador.** Windows, em PowerShell comum (sem Administrador):
+   `powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/GabrielSpricigo/destrave-starter-kit/main/bootstrap.ps1 | iex"`
+   Mac/Linux: `git clone` deste repo e `bash install.sh`. No menu, escolha `a`.
+4. **Verifique em disco.** Não conclua que funcionou porque o instalador disse
+   que funcionou — no Windows existe uma falha em que a gravação reporta
+   sucesso e o arquivo não existe (Acesso Controlado a Pastas do Defender).
+   Confirme: `rtk gain` responde, `~/.claude/settings.json` tem
+   `rtk hook claude`, e o perfil do terminal existe.
+
+**Regras que evitam estrago:**
+
+- **Nunca sugira WSL.** Foi removido do kit de propósito em 07/2026 — mesmo
+  rodando dentro do Ubuntu, o Claude e o RTK executavam do lado Windows. A
+  instalação é nativa.
+- **Nunca peça Administrador.** Não é necessário em nenhuma etapa.
+- **Não invente comandos de outras fontes** nem instale nada além do kit.
+- Rodar de novo é seguro: os instaladores são idempotentes.
+- O público é **não-técnico** — explique sem jargão, um passo por vez.
+
+---
+
 ## O que você ganha
 
 **Fase 0 — Terminal**

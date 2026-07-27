@@ -1,62 +1,58 @@
-# Instalar conversando com o Claude Code
+# Instalar conversando com o Claude
 
-Se você não se sente à vontade com o terminal, não precisa usar. Dá pra pedir
-pro próprio Claude Code instalar o kit e te explicar cada passo.
-
-**Como fazer:** abra o Claude Code, copie o texto do bloco abaixo (o botão de
-copiar aparece no canto), cole na conversa e mande. Só isso.
+Você não precisa entender de terminal para usar este kit. Dá pra pedir para o
+próprio Claude instalar e te explicar cada passo.
 
 ---
 
+## Jeito mais simples: mande o link
+
+Abra o Claude, cole o endereço do repositório e peça ajuda. Algo assim:
+
 ```
-Quero instalar o Destrave Starter Kit nesta máquina. Você vai conduzir a
-instalação e me explicar o que está acontecendo — eu não sou técnico, então
-fale em português simples e evite jargão. Quando precisar usar um termo
-técnico, explique em uma linha antes de usar.
+https://github.com/GabrielSpricigo/destrave-starter-kit
 
-Passo a passo que quero que você siga:
+Me ajuda a instalar isso na minha máquina? Não sou técnico, então vai me
+explicando o que está acontecendo.
+```
 
-1. Descubra meu sistema operacional antes de qualquer coisa.
+Pronto. As instruções de instalação estão dentro do repositório, escritas para
+ele — o Claude lê e conduz o processo com você, um passo por vez.
 
-2. Baixe o kit para a minha pasta de usuário:
-   https://github.com/GabrielSpricigo/destrave-starter-kit
-   Se eu já tiver o kit baixado, atualize em vez de baixar de novo.
+**Vale saber:** se você estiver usando o Claude pelo **navegador**, ele não
+consegue mexer no seu computador. Ele vai te passar os comandos para você
+colar, e você cola de volta o que apareceu na tela. Se estiver usando o
+**Claude Code** (no terminal ou no aplicativo), ele instala sozinho.
 
-3. Rode o instalador do meu sistema:
-   - Windows: install.ps1
-   - Mac ou Linux: install.sh
-   Quando o menu aparecer, escolha a opção "Tudo" — a não ser que eu peça
-   outra coisa.
+---
 
-4. Enquanto instala, me diga em uma frase o que cada peça faz e por que ela
-   existe. Não despeje log na tela sem explicar.
+## Se quiser um pedido mais detalhado
 
-5. No final, confirme que funcionou de verdade — não confie na mensagem de
-   sucesso do instalador, verifique você mesmo:
-   - o comando `rtk gain` responde?
-   - o arquivo de configuração do Claude Code tem o hook do RTK?
-   - o perfil do terminal foi realmente gravado no disco?
+Serve para quando você quer deixar tudo explícito de uma vez — ou se o Claude
+não seguiu o roteiro do repositório. Copie o bloco inteiro e cole na conversa:
 
-Se algo der errado, olhe esta lista antes de tentar outra coisa — são as
-quatro falhas conhecidas neste kit, e nenhuma delas dá mensagem de erro
-óbvia:
+```
+Quero instalar o Destrave Starter Kit nesta máquina:
+https://github.com/GabrielSpricigo/destrave-starter-kit
 
-a) O Windows recusa rodar scripts (política de execução). Rode o instalador
-   com -ExecutionPolicy Bypass.
+Antes de começar, leia o arquivo CLAUDE.md do repositório — ele tem o roteiro
+de instalação e a lista de falhas conhecidas. Siga aquilo, não improvise.
 
-b) A gravação em Documentos "funciona" mas o arquivo não existe depois. É o
-   Acesso Controlado a Pastas do Windows Defender. Sempre confirme que o
-   arquivo existe depois de gravar; se não existir, me avise e use um
-   caminho alternativo em vez de seguir como se tivesse dado certo.
+Eu não sou técnico. Fale em português simples, um passo por vez, e me diga o
+que vai acontecer antes de acontecer. Se aparecer erro, me explique o que
+quebrou em vez de colar o log na tela.
 
-c) O PowerShell 7 foi instalado mas o comando `pwsh` não é encontrado. Ele
-   fica em AppData\Local\Microsoft\WindowsApps, não em Arquivos de
-   Programas. Às vezes só aparece depois de abrir um terminal novo.
+Três coisas que eu quero que você garanta:
 
-d) Um programa foi instalado mas o comando ainda não funciona. Quase sempre
-   é o terminal atual com a lista de programas desatualizada — abra um novo.
+1. Descubra meu sistema operacional antes de mandar qualquer comando.
+2. No fim, confirme que funcionou de verdade — não confie na mensagem de
+   sucesso do instalador. Verifique se o comando `rtk gain` responde, se o
+   arquivo de configuração do Claude Code tem o hook do RTK, e se o perfil do
+   terminal existe mesmo em disco.
+3. Se algo falhar, consulte as falhas conhecidas no CLAUDE.md antes de tentar
+   uma solução alternativa da internet.
 
-No final, me diga em 3 linhas o que mudou na minha máquina e qual é a
+No final, me diga em três linhas o que mudou na minha máquina e qual é a
 primeira coisa que eu deveria testar.
 ```
 
@@ -64,14 +60,18 @@ primeira coisa que eu deveria testar.
 
 ## Depois que terminar
 
-Abra um terminal novo (no Windows, use o comando `pwsh`) e digite qualquer
-comando que você já usou antes. Deve aparecer uma **sugestão em cinza**
+Abra um terminal **novo** (no Windows, use o comando `pwsh`) e digite algum
+comando que você já tenha usado antes. Deve aparecer uma **sugestão em cinza**
 completando o resto — aceite com a seta `→`.
 
-Se a sugestão não aparecer, volte no Claude Code e diga: *"a sugestão em
-cinza não aparece no meu terminal"*. Ele tem o contexto da instalação e
-consegue diagnosticar.
+Essa sugestão é a prova visível de que deu certo.
 
-## Prefere o terminal?
+Se ela não aparecer, volte na conversa e diga: *"a sugestão em cinza não
+aparece no meu terminal"*. O Claude tem o contexto da instalação e a lista de
+causas conhecidas — ele resolve.
 
-O caminho de um comando só está no [README](README.md#windows).
+---
+
+## Prefere fazer você mesmo?
+
+O caminho de um comando só está no [README](README.md#quickstart).
