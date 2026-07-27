@@ -1,7 +1,7 @@
 # Destrave Starter Kit
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux%20%7C%20Windows%20(WSL2)-blue)
+![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux%20%7C%20Windows-blue)
 ![Made by Gabriel Pedrozo](https://img.shields.io/badge/by-Gabriel%20Pedrozo-orange)
 
 Repositório plug-and-play para mentorados do **Destrave Claude Code** subirem
@@ -16,8 +16,8 @@ core do Claude Code, no Mac, Linux ou Windows.
 ## O que você ganha
 
 **Fase 0 — Terminal**
-- Mac/Linux/WSL: ZSH + Oh My Zsh + plugins (autosuggestions, syntax-highlighting)
-- Windows: usa o mesmo ZSH+OMZ via WSL2 + Ubuntu (instalado pelo `install.ps1`)
+- Mac/Linux: ZSH + Oh My Zsh + plugins (autosuggestions, syntax-highlighting)
+- Windows: PowerShell 7 + PSReadLine (autocomplete) + Oh My Posh (prompt)
 
 **Skills core (5)**
 1. **RTK** — token optimization (60–90% economia em comandos de dev)
@@ -37,14 +37,12 @@ core do Claude Code, no Mac, Linux ou Windows.
 |----------|--------------------------------------|
 | **Mac**     | [Homebrew](https://brew.sh), `git`, Claude Code |
 | **Linux**   | `git`, `curl`, Claude Code |
-| **Windows** | Windows 10 versão 2004+ ou Windows 11 (qualquer build moderno), `git` no Windows |
+| **Windows** | Windows 10 versão 2004+ ou Windows 11, `winget` (vem com o "Instalador de Aplicativo" da Microsoft Store), Claude Code |
 
 > Não tem Claude Code ainda? Veja [claude.com/code](https://claude.com/code).
 
-> **Windows usa WSL2 + Ubuntu.** O ZSH e o Oh My Zsh que aparecem na aula são shells Unix —
-> não rodam em PowerShell puro. O kit instala o WSL pra você (um comando, um reboot) e
-> roda exatamente o mesmo `install.sh` que o Mac usa, dentro do Ubuntu. Resultado: o que
-> você vê na aula é o que aparece na sua tela.
+> **No Windows não precisa de WSL, nem de Administrador, nem de reboot.**
+> A instalação roda em PowerShell nativo com o seu usuário comum.
 
 ---
 
@@ -66,27 +64,42 @@ cd ~/destrave-starter-kit
 bash install.sh
 ```
 
-### Windows (PowerShell como Administrador)
+### Windows
 
-**Passo 1** — instalar WSL2 + Ubuntu (uma vez só, pede reboot):
+Abra o **PowerShell** (o normal, sem "como administrador") e cole:
 
 ```powershell
-git clone https://github.com/GabrielSpricigo/destrave-starter-kit.git $HOME\destrave-starter-kit
-cd $HOME\destrave-starter-kit
-.\install.ps1
+powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/GabrielSpricigo/destrave-starter-kit/main/bootstrap.ps1 | iex"
 ```
 
-**Passo 2** — depois do reboot, abra **Ubuntu** no menu Iniciar e rode:
+Esse comando baixa o kit e abre o instalador. Não precisa ter `git` instalado.
 
-```bash
-git clone https://github.com/GabrielSpricigo/destrave-starter-kit.git ~/destrave-starter-kit
-cd ~/destrave-starter-kit
-bash install.sh
-```
-
-A partir daí, o caminho Windows é idêntico ao Linux. Toda a aula faz sentido sem adaptação.
+> **Não gosta de terminal?** Dá pra pedir para o próprio Claude Code fazer a
+> instalação e te explicar cada passo: veja [INSTALAR-PELO-CLAUDE.md](INSTALAR-PELO-CLAUDE.md).
 
 O master abre um menu. Escolha `(a) Tudo` na primeira vez.
+
+---
+
+## Windows: o que muda em relação à aula
+
+A aula é gravada no Mac, com ZSH. No Windows você usa PowerShell. O prompt na
+tela é **o mesmo tema** (`robbyrussell`) e os atalhos de teclado batem, então
+o dia a dia é igual. O que muda são alguns comandos:
+
+| Na aula (ZSH/Mac) | No seu Windows (PowerShell) | O que é |
+|---|---|---|
+| `~/.zshrc` | `$PROFILE` | arquivo de configuração do terminal |
+| `ls -la` | `ll` | listar arquivos, inclusive ocultos |
+| `which claude` | `Get-Command claude` | descobrir onde um programa está |
+| `export VAR=valor` | `$env:VAR = "valor"` | criar variável de ambiente |
+| `source arquivo` | `. arquivo` | carregar um script no terminal atual |
+| `grep texto arquivo` | `Select-String texto arquivo` | procurar texto dentro de arquivo |
+| `rm -rf pasta` | `Remove-Item -Recurse -Force pasta` | apagar pasta e conteúdo |
+| `open .` | `ii .` | abrir a pasta atual no explorador |
+
+Estes funcionam igual nos dois: `cd`, `pwd`, `cat`, `mkdir`, `cp`, `mv`,
+`echo`, `curl`, `git`, `claude`, `rtk`, `Tab`, `Ctrl+R`, `Ctrl+C`, `↑`, `→`.
 
 ---
 
@@ -109,13 +122,47 @@ o que já está OK.
 
 ---
 
+## Já tinha instalado pela versão antiga (com WSL)?
+
+Até julho de 2026 o kit instalava WSL2 + Ubuntu no Windows. **Isso não é mais
+necessário** — e, na prática, nunca entregou o que prometia: mesmo rodando
+`claude` dentro do Ubuntu, quem executava era o Claude do Windows, gravando
+tudo no perfil do Windows. O RTK idem. O WSL só somava uma camada de tradução
+no meio, que é de onde vinham problemas como colar texto de forma errada.
+
+Para migrar: rode o comando do Quickstart do Windows acima. Ele instala a
+stack nativa direto.
+
+Seu WSL continua instalado e funcionando — este kit só deixa de usá-lo. Se
+você não usa o Ubuntu para mais nada e quiser remover, é
+`wsl --unregister Ubuntu` (isso apaga os arquivos que estiverem lá dentro).
+
+---
+
 ## Troubleshooting
 
-A ser preenchido conforme aparecem casos reais (Mac, Linux, Windows).
-Por ora, abra issue no repo com:
-- OS + versão
-- Comando que rodou
-- Mensagem de erro completa
+**Windows: "não é possível carregar o arquivo... não está assinado digitalmente"**
+É a política de execução de scripts do Windows. Use o comando do Quickstart,
+que já vem com `-ExecutionPolicy Bypass`.
+
+**Windows: o instalador diz que gravou, mas nada mudou**
+Provavelmente é o **Acesso Controlado a Pastas** do Windows Defender, que
+bloqueia gravação em Documentos sem gerar erro. O instalador detecta isso e
+avisa na tela, seguindo por um caminho alternativo. Para liberar de vez, abra
+o PowerShell como Administrador e rode:
+`Set-MpPreference -EnableControlledFolderAccess Disabled`
+
+**Windows: instalei mas o comando não existe**
+Feche o terminal e abra um novo. A lista de programas do terminal só é lida
+na abertura.
+
+**Windows: a sugestão em cinza não aparece**
+Confirme que você está no PowerShell 7 (comando `pwsh`), não no PowerShell 5.1
+que vem com o Windows. No Windows Terminal: Configurações > Perfil padrão >
+PowerShell 7.
+
+Outros casos: abra issue no repo com OS + versão, comando que rodou e a
+mensagem de erro completa.
 
 ---
 
@@ -123,9 +170,11 @@ Por ora, abra issue no repo com:
 
 ```
 destrave-starter-kit/
-├── install.sh / install.ps1     Masters por OS (menu interativo)
+├── bootstrap.ps1                 Entrada de um comando só (Windows)
+├── install.sh / install.ps1      Masters por OS (menu interativo)
+├── INSTALAR-PELO-CLAUDE.md       Instalação conversando com o Claude Code
 ├── lib/                          Helpers de detecção de OS
-├── terminal/                     Fase 0 — ZSH/OMZ ou Oh My Posh
+├── terminal/                     Fase 0 — ZSH/OMZ (Unix) ou PowerShell 7 (Windows)
 ├── skills/                       5 skills core + MemPalace opt-in
 │   ├── rtk/
 │   ├── dictation/
@@ -135,6 +184,13 @@ destrave-starter-kit/
 │   └── mempalace/
 └── docs/                         PDFs explicativos
 ```
+
+Cada skill tem `install-mac-linux.sh` e `install-windows.ps1` — mesmo
+resultado, caminhos diferentes.
+
+> Nota para quem for contribuir: todo arquivo `.ps1` **precisa** ser salvo em
+> UTF-8 **com BOM**. Sem o BOM, o Windows PowerShell 5.1 lê como ANSI e todo
+> acento vira lixo na tela ("instalação" → "instalaÃ§Ã£o").
 
 ---
 
@@ -161,6 +217,7 @@ Este kit empacota e adapta projetos open-source incríveis:
 - **[Whispering](https://github.com/braden-w/whispering)** (Braden Wong) — dictation cross-platform.
 - **[agent-browser](https://www.npmjs.com/package/@vercel-labs/agent-browser)** (Vercel Labs) — CLI de navegação web.
 - **[Oh My Zsh](https://ohmyz.sh)** — framework do shell ZSH.
+- **[Oh My Posh](https://ohmyposh.dev)** (Jan De Dobbeleer) — prompt para PowerShell.
 
 ## Licença
 
