@@ -232,9 +232,16 @@ destrave-starter-kit/
 Cada skill tem `install-mac-linux.sh` e `install-windows.ps1` — mesmo
 resultado, caminhos diferentes.
 
-> Nota para quem for contribuir: todo arquivo `.ps1` **precisa** ser salvo em
-> UTF-8 **com BOM**. Sem o BOM, o Windows PowerShell 5.1 lê como ANSI e todo
-> acento vira lixo na tela ("instalação" → "instalaÃ§Ã£o").
+> **Nota de encoding para quem for contribuir** — são duas regras opostas, e
+> confundir uma com a outra quebra a instalação:
+>
+> - Todo `.ps1` **executado a partir do disco** precisa ser UTF-8 **com BOM**.
+>   Sem o BOM, o Windows PowerShell 5.1 lê como ANSI e todo acento vira lixo
+>   na tela ("instalação" → "instalaÃ§Ã£o").
+> - **`bootstrap.ps1` é a exceção: sem BOM e somente ASCII.** Ele é consumido
+>   por `irm | iex`, e nesse caminho o BOM chega como caractere invisível no
+>   início da string e quebra o parser antes de qualquer linha rodar. Como
+>   fica sem BOM, também não pode ter acentos.
 
 ---
 
