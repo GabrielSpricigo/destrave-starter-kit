@@ -50,17 +50,27 @@ if (-not (Get-Command npm -ErrorAction SilentlyContinue)) {
 if (Get-Command agent-browser -ErrorAction SilentlyContinue) {
     Write-DestraveOk "agent-browser já instalado."
 } else {
-    Write-DestraveInfo "Instalando @vercel-labs/agent-browser..."
+    Write-DestraveInfo "Instalando agent-browser..."
+    # npm é comando nativo: dependendo da versão do pwsh o erro vem por exceção
+    # ou só por exit code. Cobrimos os dois — senão o script "passa" sem instalar.
+    $npmFalhou = $false
     try {
-        & npm install -g '@vercel-labs/agent-browser'
+        & npm install -g 'agent-browser'
+        if ($LASTEXITCODE -ne 0) { $npmFalhou = $true }
     } catch {
+        $npmFalhou = $true
         Write-DestraveErr "Falha no npm install: $($_.Exception.Message)"
+    }
+    if ($npmFalhou) {
+        Write-DestraveErr "npm não conseguiu instalar o agent-browser."
+        Write-DestraveInfo "Tente na mão: npm install -g agent-browser"
         exit 1
     }
     if (Get-Command agent-browser -ErrorAction SilentlyContinue) {
         Write-DestraveOk "agent-browser instalado."
     } else {
-        Write-DestraveWarn "Instalado, mas ainda fora do PATH deste terminal. Abra um novo."
+        Write-DestraveWarn "npm terminou sem erro, mas 'agent-browser' ainda não aparece neste terminal."
+        Write-DestraveInfo "Abra um terminal NOVO e confirme com: agent-browser --version"
     }
 }
 

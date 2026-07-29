@@ -266,7 +266,7 @@ Este kit empacota e adapta projetos open-source incríveis:
 - **[LLM-Wiki-Skilled](https://github.com/TrueHOOHA/LLM-Wiki-Skilled)** (TrueHOOHA) — base do template de wiki Karpathy-style.
 - **[RTK · Rust Token Killer](https://github.com/rtk-ai/rtk)** — proxy CLI que economiza tokens.
 - **[Whispering](https://github.com/braden-w/whispering)** (Braden Wong) — dictation cross-platform.
-- **[agent-browser](https://www.npmjs.com/package/@vercel-labs/agent-browser)** (Vercel Labs) — CLI de navegação web.
+- **[agent-browser](https://www.npmjs.com/package/agent-browser)** (Vercel Labs) — CLI de navegação web.
 - **[Oh My Zsh](https://ohmyz.sh)** — framework do shell ZSH.
 - **[Oh My Posh](https://ohmyposh.dev)** (Jan De Dobbeleer) — prompt para PowerShell.
 

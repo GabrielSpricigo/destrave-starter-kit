@@ -54,9 +54,19 @@ destrave_ok "Node: $(node -v) · npm: $(npm -v)"
 if command -v agent-browser >/dev/null 2>&1; then
     destrave_ok "agent-browser já instalado: $(agent-browser --version 2>&1 | head -1)"
 else
-    destrave_info "Instalando @vercel-labs/agent-browser..."
-    npm install -g @vercel-labs/agent-browser
-    destrave_ok "agent-browser instalado: $(agent-browser --version 2>&1 | head -1)"
+    destrave_info "Instalando agent-browser..."
+    if ! npm install -g agent-browser; then
+        destrave_err "npm não conseguiu instalar o agent-browser."
+        destrave_info "Tente na mão: npm install -g agent-browser"
+        exit 1
+    fi
+    if command -v agent-browser >/dev/null 2>&1; then
+        destrave_ok "agent-browser instalado: $(agent-browser --version 2>&1 | head -1)"
+    else
+        destrave_err "npm terminou sem erro, mas 'agent-browser' não está no PATH."
+        destrave_info "Abra um terminal novo e rode de novo. Se persistir: npm prefix -g"
+        exit 1
+    fi
 fi
 
 # --- 3. Registrar uso preferencial no CLAUDE.md global ----------------------
